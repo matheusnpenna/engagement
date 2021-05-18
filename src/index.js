@@ -30,6 +30,7 @@ const MyTheme = {
 
 const tabConfig = {
   screenOptions: ({route}) => ({
+    title: ' ',
     tabBarIcon: ({focused, color, size}) => {
       // You can return any component that you like here!
       return (
