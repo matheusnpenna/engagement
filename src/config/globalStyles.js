@@ -7,7 +7,10 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   pageTitle: {
-    fontSize: 28,
-    fontWeight: "bold",
+    position: 'absolute',
+    top: '5%',
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#7d7d7d',
   },
 });

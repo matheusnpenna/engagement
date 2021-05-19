@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
-import globalStyles from './config/globalStyles';
+import globalStyles from '../../config/globalStyles';
 import styles from './styles';
 
 const HomePage = () => {

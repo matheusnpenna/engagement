@@ -31,10 +31,11 @@ const MyTheme = {
 const tabConfig = {
   screenOptions: ({route}) => ({
     title: ' ',
-    tabBarIcon: ({focused, color, size}) => {
+    tabBarIcon: ({focused}) => {
       // You can return any component that you like here!
       return (
         <Feather
+          style={{padding: 10}}
           name={screens[route.name].icon}
           size={screens[route.name].size}
           color={
