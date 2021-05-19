@@ -1,4 +1,4 @@
-package com.engagement;
+package com.matheus.penna.engagement;
 
 import com.facebook.react.ReactActivity;
 

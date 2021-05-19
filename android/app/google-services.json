@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "440305172373",
+    "project_id": "my-engagement-ms",
+    "storage_bucket": "my-engagement-ms.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440305172373:android:659d4e4448d5feb876c09c",
+        "android_client_info": {
+          "package_name": "com.matheus.penna.engagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "440305172373-4j6qvumc7raomq63dpth4gdcp8pacs42.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4_DvDXGinwG79mN7AfKegEFMFKakKgNo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "440305172373-4j6qvumc7raomq63dpth4gdcp8pacs42.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "440305172373-uegbmvt82dkj1utfti36l1ditabporhd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.matheus.penna.engagement"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

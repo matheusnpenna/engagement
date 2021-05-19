@@ -1,14 +1,14 @@
 import React, {useMemo} from 'react';
 import {StatusBar, useColorScheme, SafeAreaView} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import ApplicationContext from './context/';
+import Feather from 'react-native-vector-icons/Feather';
 import Toast from 'react-native-toast-message';
+import ApplicationContext from './context/';
 import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
 } from '@react-navigation/native';
-import Feather from 'react-native-vector-icons/Feather';
 import screens from './screens';
 
 const colors = {
