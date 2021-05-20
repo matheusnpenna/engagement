@@ -1,29 +1,49 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
-import firestore from '@react-native-firebase/firestore';
+import React, {useState, useContext} from 'react';
+import {View, Text, SafeAreaView, FlatList} from 'react-native';
+
+import {ActionDispatcher, FeedItem} from '../../components';
 import globalStyles from '../../config/globalStyles';
+import ApplicationContext from '../../context';
 import styles from './styles';
-import ActionDispatcher from '../../components/ActionDispatcher';
 
 const ThingsILovePage = () => {
   const [list, setList] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const context = useContext(ApplicationContext);
 
-  const onSuccess = () => {};
+  const onSuccess = docs => {
+    const data = [];
+    docs.forEach(doc => {
+      data.push({
+        id: doc.id,
+        ...doc.data(),
+      });
+    });
+    setList(data);
+  };
 
-  const onError = () => {};
+  const onError = error => {
+    context.message.show('', '', 'success');
+  };
+
+  const renderItem = ({item}) => <FeedItem item={item} />;
 
   return (
-    <View style={styles.container}>
-      <Text style={globalStyles.pageTitle}>Coisas que eu amo em você</Text>
+    <SafeAreaView style={globalStyles.container}>
+      <View style={globalStyles.centralize}>
+        <Text style={globalStyles.pageTitle}>Coisas que eu amo em você</Text>
+      </View>
       <ActionDispatcher
         collection={'feed'}
         onSuccess={onSuccess}
         onError={onError}>
-        {/* Colocar um carrossel só com as frases */}
-        {/* Colocar um feed com as fotos, quando abre as fotos a frase aparece */}
+        <FlatList
+          data={list}
+          numColumns={3}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
       </ActionDispatcher>
-    </View>
+    </SafeAreaView>
   );
 };
 

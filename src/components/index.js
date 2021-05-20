@@ -1,3 +1,4 @@
 import ActionDispatcher from './ActionDispatcher';
+import FeedItem from './FeedItem';
 
-export {ActionDispatcher};
+export {ActionDispatcher, FeedItem};

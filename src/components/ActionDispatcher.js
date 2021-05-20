@@ -5,7 +5,6 @@ import firestore from '@react-native-firebase/firestore';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
   },
 });
 
@@ -16,22 +15,21 @@ const ActionDispatcher = ({children, collection, onSuccess, onError}) => {
     firestore()
       .collection(collection)
       .get()
-      .then(docs => {
-        const data = [];
-        docs.forEach(doc => {
-          data.push(doc.data());
-        });
-        onSuccess(data);
-      })
-      .catch(error => onError(error))
+      .then(onSuccess)
+      .catch(onError)
       .finally(() => {
         setLoading(false);
       });
-  }, [loading, collection, onSuccess, onError]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <View style={styles.container}>
-      {loading ? <ActivityIndicator size="large" color="red" /> : children}
+      {loading ? (
+        <ActivityIndicator animating size="large" color="red" />
+      ) : (
+        children
+      )}
     </View>
   );
 };

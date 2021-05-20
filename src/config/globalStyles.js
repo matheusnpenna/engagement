@@ -3,14 +3,16 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   container: {
     height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: '100%',
+    backgroundColor: '#fff',
   },
   pageTitle: {
-    position: 'absolute',
-    top: '5%',
     fontSize: 22,
     fontWeight: 'bold',
     color: '#7d7d7d',
+  },
+  centralize: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
