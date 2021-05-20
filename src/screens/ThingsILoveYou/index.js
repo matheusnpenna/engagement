@@ -53,14 +53,13 @@ const ThingsILovePage = () => {
       onSuccess={onSuccessVerses}
       onError={onErrorVerses}>
       <View style={globalStyles.centralize}>
-        <Text style={globalStyles.pageTitle}>
-          Casamento é um projeto de Deus
-        </Text>
+        <Text style={globalStyles.pageTitle}>COISAS QUE EU AMO EM VOCÊ</Text>
       </View>
       <ContentCarousel
         data={verseList}
         renderItem={renderVerseItem}
         sliderWidth={Dimensions.get('window').width}
+        firstItem={4}
         sliderHeight={200}
         itemWidth={300}
       />

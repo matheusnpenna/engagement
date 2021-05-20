@@ -20,7 +20,7 @@ const HomePage = () => {
 
   return (
     <View style={globalStyles.container}>
-      <Text style={globalStyles.pageTitle}>HOME SCREEN</Text>
+      <Text style={globalStyles.pageTitle}>DESAFIO</Text>
     </View>
   );
 };
