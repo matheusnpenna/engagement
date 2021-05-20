@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>440305172373-uegbmvt82dkj1utfti36l1ditabporhd.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.440305172373-uegbmvt82dkj1utfti36l1ditabporhd</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCrDKQGzK-tlbJZzviVGZCfiBcV77mRsl4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>440305172373</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.matheus.penna.engagement</string>
+	<key>PROJECT_ID</key>
+	<string>my-engagement-ms</string>
+	<key>STORAGE_BUCKET</key>
+	<string>my-engagement-ms.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:440305172373:ios:48fbbfb056faac6076c09c</string>
+</dict>
+</plist>
