@@ -12,6 +12,11 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: '#7d7d7d',
   },
+  pageText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#7d7d7d',
+  },
   centralize: {
     justifyContent: 'center',
     alignItems: 'center',
