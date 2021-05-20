@@ -20,6 +20,6 @@ export default StyleSheet.create({
     color: '#7d7d7d',
     textAlign: 'center',
     paddingHorizontal: 15,
-    marginBottom: 15
+    marginBottom: 15,
   },
 });
