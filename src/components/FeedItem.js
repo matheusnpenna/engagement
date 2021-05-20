@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Video from 'react-native-video';
 

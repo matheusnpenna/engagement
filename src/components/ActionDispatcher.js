@@ -26,7 +26,7 @@ const ActionDispatcher = ({children, collection, onSuccess, onError}) => {
   return (
     <View style={styles.container}>
       {loading ? (
-        <ActivityIndicator animating size="large" color="red" />
+        <ActivityIndicator animating size="small" color="red" />
       ) : (
         children
       )}
