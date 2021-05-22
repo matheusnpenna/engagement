@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, View} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import {Button} from '../../components';
 import globalStyles from '../../config/globalStyles';

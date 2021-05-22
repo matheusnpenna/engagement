@@ -1,6 +1,7 @@
 import React, {useMemo} from 'react';
 import {StatusBar, useColorScheme, SafeAreaView} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import Feather from 'react-native-vector-icons/Feather';
 import Toast from 'react-native-toast-message';
 import ApplicationContext from './context/';
@@ -36,12 +37,12 @@ const tabConfig = {
       return (
         <Feather
           style={{padding: 10}}
-          name={screens[route.name].icon}
-          size={screens[route.name].size}
+          name={screens.bottomTabs[route.name].icon}
+          size={screens.bottomTabs[route.name].size}
           color={
             focused
-              ? screens[route.name].focusedColor
-              : screens[route.name].defaultColor
+              ? screens.bottomTabs[route.name].focusedColor
+              : screens.bottomTabs[route.name].defaultColor
           }
         />
       );
@@ -86,6 +87,46 @@ function App() {
     [],
   );
   const Tab = createBottomTabNavigator();
+  const Stack = createStackNavigator();
+
+  const BottomTabs = () => {
+    return (
+      <Tab.Navigator
+        screenOptions={tabConfig.screenOptions}
+        tabBarOptions={tabConfig.tabBarOptions}>
+        {Object.entries(screens.bottomTabs)
+          .map(([_, v]) => v)
+          .map(r => (
+            <Tab.Screen key={r.key} name={r.name} component={r.component} />
+          ))}
+      </Tab.Navigator>
+    );
+  };
+
+  const MainStack = () => {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={BottomTabs} />
+        {Object.entries(screens.free)
+          .map(([_, v]) => v)
+          .map(r => (
+            <Stack.Screen
+              key={r.key}
+              name={r.name}
+              component={r.component}
+              options={{
+                title: '',
+                headerBackTitleVisible: false,
+                headerLeftContainerStyle: {
+                  color: 'black',
+                },
+              }}
+            />
+          ))}
+      </Stack.Navigator>
+    );
+  };
+
   return (
     <ApplicationContext.Provider value={contextStore}>
       <SafeAreaView style={{flex: 1}}>
@@ -94,15 +135,7 @@ function App() {
             backgroundColor={colors.background}
             barStyle={scheme === 'dark' ? 'dark-content' : 'light-content'}
           />
-          <Tab.Navigator
-            screenOptions={tabConfig.screenOptions}
-            tabBarOptions={tabConfig.tabBarOptions}>
-            {Object.entries(screens)
-              .map(([_, v]) => v)
-              .map(r => (
-                <Tab.Screen key={r.key} name={r.name} component={r.component} />
-              ))}
-          </Tab.Navigator>
+          <MainStack />
           <Toast ref={ref => Toast.setRef(ref)} />
         </NavigationContainer>
       </SafeAreaView>

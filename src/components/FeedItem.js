@@ -1,21 +1,21 @@
 import React, {useMemo} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Video from 'react-native-video';
+import screens from '../screens';
 
 const styles = StyleSheet.create({
   wrapper: {
-    margin: 5,
+    flexGrow: 1,
+    margin: 1,
     height: 120,
-    width: 120,
   },
   media: {
     height: 120,
-    width: 120,
   },
 });
 
-const FeedItem = ({item}) => {
+const FeedItem = ({item, navigation}) => {
   const renderContent = useMemo(() => {
     if (item.media_type === 'video') {
       return (
@@ -34,12 +34,23 @@ const FeedItem = ({item}) => {
         key={item.id}
         style={styles.media}
         source={{uri: item.picture}}
-        resizeMode={FastImage.resizeMode.contain}
+        resizeMode={FastImage.resizeMode.cover}
       />
     );
   }, [item]);
 
-  return <View style={styles.wrapper}>{renderContent}</View>;
+  const onPressItem = () => {
+    navigation.navigate(screens.free.thingDetails.name, {item});
+  };
+
+  return (
+    <TouchableOpacity
+      activeOpacity={0.8}
+      style={styles.wrapper}
+      onPress={onPressItem}>
+      {renderContent}
+    </TouchableOpacity>
+  );
 };
 
 export default FeedItem;

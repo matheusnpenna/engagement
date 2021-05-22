@@ -7,7 +7,7 @@ export default StyleSheet.create({
     backgroundColor: '#fff',
   },
   header: {
-    height: 320,
+    height: 220,
   },
   verse: {
     textAlign: 'center',

@@ -6,7 +6,7 @@ import globalStyles from '../../config/globalStyles';
 import ApplicationContext from '../../context';
 import styles from './styles';
 
-const ThingsILovePage = () => {
+const ThingsILovePage = ({navigation}) => {
   const [list, setList] = useState([]);
   const [verseList, setVerseList] = useState([]);
   const context = useContext(ApplicationContext);
@@ -39,7 +39,9 @@ const ThingsILovePage = () => {
     context.message.show('', '', 'success');
   };
 
-  const renderItem = ({item}) => <FeedItem item={item} />;
+  const renderItem = ({item}) => (
+    <FeedItem item={item} navigation={navigation} />
+  );
   const renderVerseItem = ({item}) => (
     <View style={{...globalStyles.centralize, ...styles.header}}>
       <Text style={styles.verse}>{item.text}</Text>
@@ -60,7 +62,7 @@ const ThingsILovePage = () => {
         renderItem={renderVerseItem}
         sliderWidth={Dimensions.get('window').width}
         firstItem={4}
-        sliderHeight={200}
+        sliderHeight={100}
         itemWidth={300}
       />
       <View style={globalStyles.centralize}>
@@ -72,8 +74,10 @@ const ThingsILovePage = () => {
   );
 
   return (
-    <SafeAreaView style={globalStyles.container}>
+    <SafeAreaView
+      style={{...globalStyles.container, ...globalStyles.centralize}}>
       <ActionDispatcher
+        style={globalStyles.centralize}
         collection={'feed'}
         onSuccess={onSuccess}
         onError={onError}>
