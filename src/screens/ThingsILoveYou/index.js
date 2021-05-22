@@ -1,14 +1,27 @@
-import React, {useState, useContext} from 'react';
-import {View, Text, SafeAreaView, FlatList, Dimensions} from 'react-native';
+import React, {useState, useContext, useEffect} from 'react';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Image,
+  FlatList,
+  Dimensions,
+} from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 
 import {ActionDispatcher, FeedItem, ContentCarousel} from '../../components';
 import globalStyles from '../../config/globalStyles';
 import ApplicationContext from '../../context';
+import {IMAGES} from '../../assets';
 import styles from './styles';
+
+const PAGINATION_LIMIT = 20;
 
 const ThingsILovePage = ({navigation}) => {
   const [list, setList] = useState([]);
   const [verseList, setVerseList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [offset, setOffset] = useState(0);
   const context = useContext(ApplicationContext);
 
   const onSuccess = docs => {
@@ -19,7 +32,7 @@ const ThingsILovePage = ({navigation}) => {
         ...doc.data(),
       });
     });
-    setList(data);
+    setList([...list, ...data]);
   };
   const onSuccessVerses = docs => {
     const data = [];
@@ -33,11 +46,37 @@ const ThingsILovePage = ({navigation}) => {
   };
 
   const onError = error => {
-    context.message.show('', '', 'success');
+    context.message.show('Atenção', error, 'error');
   };
   const onErrorVerses = error => {
-    context.message.show('', '', 'success');
+    context.message.show('Atenção', error, 'error');
   };
+
+  const _onRefresh = async () => {
+    const response = await firestore().collection('feed').get();
+    onSuccess(response);
+  };
+
+  const updateOffset = () => {
+    setOffset(offset + 10);
+  };
+
+  const _loadMore = async () => {
+    setLoading(true);
+    const response = await firestore()
+      .collection('feed')
+      .orderBy('text')
+      .startAt(offset)
+      .limit(PAGINATION_LIMIT)
+      .get();
+    onSuccess(response);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    _loadMore(offset);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [offset]);
 
   const renderItem = ({item}) => (
     <FeedItem item={item} navigation={navigation} />
@@ -54,8 +93,26 @@ const ThingsILovePage = ({navigation}) => {
       collection={'verses'}
       onSuccess={onSuccessVerses}
       onError={onErrorVerses}>
-      <View style={globalStyles.centralize}>
-        <Text style={globalStyles.pageTitle}>COISAS QUE EU AMO EM VOCÊ</Text>
+      <View style={[globalStyles.row, globalStyles.padding1]}>
+        <View style={[globalStyles.centralize, globalStyles.marginRight1]}>
+          <Image source={IMAGES.profile} style={styles.profileImg} />
+          <Text style={globalStyles.profileName}>Matheus Penna</Text>
+        </View>
+        <View style={[globalStyles.row, globalStyles.between]}>
+          <View style={globalStyles.centralize}>
+            <Text style={styles.insightsNumber}>{list.length}</Text>
+            <Text style={styles.insightsLegend}>Posts</Text>
+          </View>
+          <View
+            style={[globalStyles.centralize, globalStyles.marginHorizontal2]}>
+            <Text style={styles.insightsNumber}>Infinitas</Text>
+            <Text style={styles.insightsLegend}>Coisas</Text>
+          </View>
+          <View style={globalStyles.centralize}>
+            <Text style={styles.insightsNumber}>Todos</Text>
+            <Text style={styles.insightsLegend}>Dias para te amar</Text>
+          </View>
+        </View>
       </View>
       <ContentCarousel
         data={verseList}
@@ -63,11 +120,11 @@ const ThingsILovePage = ({navigation}) => {
         sliderWidth={Dimensions.get('window').width}
         firstItem={4}
         sliderHeight={100}
-        itemWidth={300}
+        itemWidth={330}
       />
       <View style={globalStyles.centralize}>
         <Text style={styles.cta}>
-          Em cada imagem abaixo há coisas que eu amo em você!
+          Em cada imagem abaixo há algo que amo em você!
         </Text>
       </View>
     </ActionDispatcher>
@@ -78,6 +135,7 @@ const ThingsILovePage = ({navigation}) => {
       style={{...globalStyles.container, ...globalStyles.centralize}}>
       <ActionDispatcher
         style={globalStyles.centralize}
+        limit={PAGINATION_LIMIT}
         collection={'feed'}
         onSuccess={onSuccess}
         onError={onError}>
@@ -86,7 +144,12 @@ const ThingsILovePage = ({navigation}) => {
           numColumns={3}
           renderItem={renderItem}
           keyExtractor={item => item.id}
+          refreshing={loading}
+          onRefresh={_onRefresh}
           ListHeaderComponent={_renderHeader}
+          removeClippedSubviews
+          onEndReachedThreshold={0}
+          onEndReached={updateOffset}
         />
       </ActionDispatcher>
     </SafeAreaView>

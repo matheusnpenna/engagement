@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import {View, Text, Image, Dimensions} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 
 import {MediaView} from '../../components';
@@ -16,7 +16,7 @@ const ThingDetailsPage = ({route, navigation}) => {
     <View style={globalStyles.container}>
       <View style={globalStyles.row}>
         <Image source={IMAGES.profile} style={styles.profileImg} />
-        <Text style={[styles.likePerson, globalStyles.marginBottom1]}>
+        <Text style={[globalStyles.profileName, globalStyles.marginBottom1]}>
           _matheuspenna
         </Text>
       </View>
@@ -40,10 +40,10 @@ const ThingDetailsPage = ({route, navigation}) => {
         <Feather name={'bookmark'} size={22} color={'black'} />
       </View>
       <Text style={[styles.likeWrapper, globalStyles.marginBottom1]}>
-        Curtido por <Text style={styles.likePerson}>Deus</Text> e{' '}
-        <Text style={styles.likePerson}>outros</Text>
+        Curtido por <Text style={globalStyles.profileName}>Deus</Text> e{' '}
+        <Text style={globalStyles.profileName}>outros</Text>
       </Text>
-      <Text style={[styles.likePerson, globalStyles.marginBottom1]}>
+      <Text style={[globalStyles.profileName, globalStyles.marginBottom1]}>
         _matheuspenna <Text style={styles.legend}>{item.text}</Text>
       </Text>
       <View style={globalStyles.centralize}>

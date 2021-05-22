@@ -5,6 +5,7 @@ import ThingDetailsPage from './ThingDetails';
 const screens = {
   free: {
     thingDetails: {
+      title: 'Post',
       key: 'details',
       name: 'thingDetails',
       component: ThingDetailsPage,
@@ -16,6 +17,7 @@ const screens = {
   },
   bottomTabs: {
     thingsILove: {
+      title: '',
       key: 'screen-2',
       name: 'thingsILove',
       component: ThingsILovePage,
@@ -25,6 +27,7 @@ const screens = {
       focusedColor: 'red',
     },
     home: {
+      title: '',
       key: 'screen-1',
       name: 'home',
       component: HomePage,

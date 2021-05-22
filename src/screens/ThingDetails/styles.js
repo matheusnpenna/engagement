@@ -36,10 +36,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  likePerson: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
   profileImg: {
     height: 40,
     width: 40,

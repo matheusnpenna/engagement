@@ -1,5 +1,10 @@
 import React, {useMemo} from 'react';
-import {StatusBar, useColorScheme, SafeAreaView} from 'react-native';
+import {
+  StatusBar,
+  useColorScheme,
+  SafeAreaView,
+  TouchableOpacity,
+} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import Feather from 'react-native-vector-icons/Feather';
@@ -61,7 +66,7 @@ function App() {
   const show = (text1, text2, type, onPress = null) => {
     Toast.show({
       type, //'success | error | info',
-      position: 'top', //'top | bottom',
+      position: 'bottom', //'top | bottom',
       text1,
       text2,
       visibilityTime: 4000,
@@ -109,18 +114,22 @@ function App() {
         <Stack.Screen name="Home" component={BottomTabs} />
         {Object.entries(screens.free)
           .map(([_, v]) => v)
-          .map(r => (
+          .map(({key, name, component, title}) => (
             <Stack.Screen
-              key={r.key}
-              name={r.name}
-              component={r.component}
-              options={{
-                title: '',
+              key={key}
+              name={name}
+              component={component}
+              options={({navigation, route}) => ({
+                title,
                 headerBackTitleVisible: false,
-                headerLeftContainerStyle: {
-                  color: 'black',
-                },
-              }}
+                headerLeft: () => (
+                  <TouchableOpacity
+                    activeOpacity={0.9}
+                    onPress={() => navigation.goBack()}>
+                    <Feather name={'chevron-left'} size={30} color={'black'} />
+                  </TouchableOpacity>
+                ),
+              })}
             />
           ))}
       </Stack.Navigator>

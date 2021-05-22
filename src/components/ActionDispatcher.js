@@ -5,27 +5,36 @@ import firestore from '@react-native-firebase/firestore';
 const ActionDispatcher = ({
   children,
   style = {},
+  limit = 50,
   collection,
   onSuccess,
   onError,
 }) => {
   const [loading, setLoading] = useState(false);
+
+  const fetchData = async function (collectionName, success, reject) {
+    try {
+      setLoading(true);
+      const response = await firestore()
+        .collection(collectionName)
+        .limit(limit)
+        .get();
+      setLoading(false);
+      success(response);
+    } catch (error) {
+      reject(error);
+    }
+  };
+
   useEffect(() => {
-    setLoading(true);
-    firestore()
-      .collection(collection)
-      .get()
-      .then(onSuccess)
-      .catch(onError)
-      .finally(() => {
-        setLoading(false);
-      });
+    fetchData(collection, onSuccess, onError);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <View style={style}>
       {loading ? (
-        <ActivityIndicator animating size="small" color="red" />
+        <ActivityIndicator animating size="small" color="black" />
       ) : (
         children
       )}

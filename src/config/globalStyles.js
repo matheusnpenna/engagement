@@ -15,6 +15,10 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: '#7d7d7d',
   },
+  profileName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
   text: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -22,6 +26,10 @@ export default StyleSheet.create({
   },
   centralize: {
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  between: {
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   row: {
@@ -37,5 +45,14 @@ export default StyleSheet.create({
   },
   marginRight1: {
     marginRight: 10,
+  },
+  marginHorizontal1: {
+    marginHorizontal: 10,
+  },
+  marginHorizontal2: {
+    marginHorizontal: 15,
+  },
+  padding1: {
+    padding: 10,
   },
 });
