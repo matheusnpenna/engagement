@@ -4,10 +4,9 @@ export default StyleSheet.create({
   media: {
     height: 300,
   },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#7d7d7d',
+  legend: {
+    fontSize: 16,
+    fontWeight: '400',
     textAlign: 'center',
     paddingHorizontal: 15,
     marginBottom: 15,
@@ -38,7 +37,13 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   likePerson: {
-    fontSize: 12,
+    fontSize: 16,
     fontWeight: 'bold',
+  },
+  profileImg: {
+    height: 40,
+    width: 40,
+    borderRadius: 50,
+    marginRight: 10,
   },
 });
