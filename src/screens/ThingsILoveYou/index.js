@@ -8,6 +8,7 @@ import {
   Dimensions,
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
+import messaging from '@react-native-firebase/messaging';
 
 import {ActionDispatcher, FeedItem, ContentCarousel} from '../../components';
 import globalStyles from '../../config/globalStyles';
@@ -23,6 +24,18 @@ const ThingsILovePage = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
   const context = useContext(ApplicationContext);
+  async function requestUserPermission() {
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+    if (enabled) {
+      console.log('Authorization status:', authStatus);
+    }
+  }
+
+  requestUserPermission();
 
   const onSuccess = docs => {
     const data = [];
@@ -81,6 +94,7 @@ const ThingsILovePage = ({navigation}) => {
   const renderItem = ({item}) => (
     <FeedItem item={item} navigation={navigation} />
   );
+  
   const renderVerseItem = ({item}) => (
     <View style={{...globalStyles.centralize, ...styles.header}}>
       <Text style={styles.verse}>{item.text}</Text>
