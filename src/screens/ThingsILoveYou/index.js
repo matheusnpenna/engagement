@@ -32,7 +32,7 @@ const ThingsILovePage = ({navigation}) => {
         ...doc.data(),
       });
     });
-    setList([...list, ...data]);
+    setList(data);
   };
   const onSuccessVerses = docs => {
     const data = [];
