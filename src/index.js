@@ -66,13 +66,13 @@ function App() {
   const show = (text1, text2, type, onPress = null) => {
     Toast.show({
       type, //'success | error | info',
-      position: 'bottom', //'top | bottom',
+      position: 'top', //'top | bottom',
       text1,
       text2,
-      visibilityTime: 4000,
+      visibilityTime: 4500,
       autoHide: true,
-      topOffset: 30,
-      bottomOffset: 40,
+      topOffset: 60,
+      bottomOffset: 60,
       onShow: () => {},
       onHide: () => {}, // called when Toast hides (if `autoHide` was set to `true`)
       onPress: () => {

@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useMemo, useContext, useEffect} from 'react';
 import {
   View,
   Text,
@@ -6,11 +6,17 @@ import {
   Image,
   FlatList,
   Dimensions,
+  TextInput,
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import messaging from '@react-native-firebase/messaging';
 
-import {ActionDispatcher, FeedItem, ContentCarousel} from '../../components';
+import {
+  ActionDispatcher,
+  FeedItem,
+  ContentCarousel,
+  Button,
+} from '../../components';
 import globalStyles from '../../config/globalStyles';
 import ApplicationContext from '../../context';
 import {IMAGES} from '../../assets';
@@ -19,11 +25,14 @@ import styles from './styles';
 const PAGINATION_LIMIT = 20;
 
 const ThingsILovePage = ({navigation}) => {
+  const [password, onChangePassword] = useState('');
+  const [showContent, setShowContent] = useState(false);
   const [list, setList] = useState([]);
   const [verseList, setVerseList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
-  const context = useContext(ApplicationContext);
+  const {message} = useContext(ApplicationContext);
+
   async function requestUserPermission() {
     const authStatus = await messaging().requestPermission();
     const enabled =
@@ -37,6 +46,19 @@ const ThingsILovePage = ({navigation}) => {
 
   requestUserPermission();
 
+  const attemptUnlock = () => {
+    if (!password.length) {
+      message.show('Digite a senha!', '', 'error');
+      return;
+    }
+
+    if (password === '102030') {
+      setShowContent(true);
+    } else {
+      message.show('Senha Incorreta!', '', 'error');
+    }
+  };
+
   const onSuccess = docs => {
     const data = [];
     docs.forEach(doc => {
@@ -47,6 +69,7 @@ const ThingsILovePage = ({navigation}) => {
     });
     setList(data);
   };
+
   const onSuccessVerses = docs => {
     const data = [];
     docs.forEach(doc => {
@@ -59,10 +82,10 @@ const ThingsILovePage = ({navigation}) => {
   };
 
   const onError = error => {
-    context.message.show('Atenção', error, 'error');
+    message.show('Atenção', error, 'error');
   };
   const onErrorVerses = error => {
-    context.message.show('Atenção', error, 'error');
+    message.show('Atenção', error, 'error');
   };
 
   const _onRefresh = async () => {
@@ -94,7 +117,7 @@ const ThingsILovePage = ({navigation}) => {
   const renderItem = ({item}) => (
     <FeedItem item={item} navigation={navigation} />
   );
-  
+
   const renderVerseItem = ({item}) => (
     <View style={{...globalStyles.centralize, ...styles.header}}>
       <Text style={styles.verse}>{item.text}</Text>
@@ -144,9 +167,27 @@ const ThingsILovePage = ({navigation}) => {
     </ActionDispatcher>
   );
 
-  return (
-    <SafeAreaView
-      style={{...globalStyles.container, ...globalStyles.centralize}}>
+  const content = useMemo(() => {
+    if (!showContent) {
+      return (
+        <View style={styles.authWrapper}>
+          <Text style={styles.label}>
+            Digite a senha descoberta no desafio para acessar e descobrir coisas
+            que eu amo em você
+          </Text>
+          <TextInput
+            secureTextEntry
+            style={styles.input}
+            onChangeText={e => onChangePassword(e)}
+            value={password}
+          />
+          <View style={styles.btnWrapper}>
+            <Button title={'ENTRAR'} onPress={attemptUnlock} />
+          </View>
+        </View>
+      );
+    }
+    return (
       <ActionDispatcher
         style={globalStyles.centralize}
         limit={PAGINATION_LIMIT}
@@ -166,6 +207,14 @@ const ThingsILovePage = ({navigation}) => {
           onEndReached={updateOffset}
         />
       </ActionDispatcher>
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showContent, password, verseList]);
+
+  return (
+    <SafeAreaView
+      style={{...globalStyles.container, ...globalStyles.centralize}}>
+      {content}
     </SafeAreaView>
   );
 };

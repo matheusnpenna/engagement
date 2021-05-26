@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import Carousel from 'react-native-snap-carousel';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
 
 const styles = StyleSheet.create({
   slide: {
@@ -8,6 +8,21 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
+  },
+  dot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: '#999',
+  },
+  inactiveDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+  },
+  dotContainer: {
+    backgroundColor: 'transparent',
   },
 });
 
@@ -20,6 +35,7 @@ const ContentCarousel = ({
   itemHeight,
 }) => {
   let _carousel;
+  const [activeSlide, setActiveSlide] = useState(0);
 
   const _renderItem = ({item, index}) => {
     if (renderItem) {
@@ -33,17 +49,29 @@ const ContentCarousel = ({
   };
 
   return (
-    <Carousel
-      ref={c => {
-        _carousel = c;
-      }}
-      data={data}
-      renderItem={_renderItem}
-      sliderWidth={sliderWidth}
-      itemWidth={itemWidth}
-      sliderHeight={sliderHeight}
-      itemHeight={itemHeight}
-    />
+    <View>
+      <Carousel
+        ref={c => {
+          _carousel = c;
+        }}
+        data={data}
+        renderItem={_renderItem}
+        sliderWidth={sliderWidth}
+        itemWidth={itemWidth}
+        sliderHeight={sliderHeight}
+        itemHeight={itemHeight}
+        onSnapToItem={index => setActiveSlide(index)}
+      />
+      <Pagination
+        dotsLength={data.length}
+        activeDotIndex={activeSlide}
+        containerStyle={styles.dotContainer}
+        dotStyle={styles.dot}
+        inactiveDotStyle={styles.inactiveDot}
+        inactiveDotOpacity={0.4}
+        inactiveDotScale={0.6}
+      />
+    </View>
   );
 };
 

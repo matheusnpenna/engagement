@@ -9,6 +9,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     paddingHorizontal: 20,
     paddingVertical: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonText: {
     fontWeight: 'bold',

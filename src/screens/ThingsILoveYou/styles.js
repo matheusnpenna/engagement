@@ -38,4 +38,25 @@ export default StyleSheet.create({
     fontSize: 12,
     color: 'black',
   },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    width: 300,
+    borderRadius: 3,
+    borderColor: '#999',
+    padding: 10,
+    marginBottom: 20,
+  },
+  authWrapper: {
+    justifyContent: 'center',
+    paddingHorizontal: 30,
+  },
+  btnWrapper: {
+    paddingHorizontal: 30,
+  },
+  label: {
+    fontSize: 18,
+    textAlign: 'center',
+  },
 });
