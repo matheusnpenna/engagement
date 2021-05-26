@@ -52,7 +52,7 @@ const ThingsILovePage = ({navigation}) => {
       return;
     }
 
-    if (password === 'doyoumarryme') {
+    if (password.trim().toLowerCase() === 'doyoumarryme') {
       setShowContent(true);
     } else {
       message.show('Senha Incorreta!', '', 'error');
