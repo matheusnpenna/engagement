@@ -52,7 +52,7 @@ const ThingsILovePage = ({navigation}) => {
       return;
     }
 
-    if (password === '102030') {
+    if (password === 'doyoumarryme') {
       setShowContent(true);
     } else {
       message.show('Senha Incorreta!', '', 'error');

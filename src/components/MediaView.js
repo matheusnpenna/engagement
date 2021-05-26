@@ -1,10 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {View, ActivityIndicator, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Video from 'react-native-video';
+import styles from '../screens/Home/styles';
 const localStyles = StyleSheet.create({
   loadingView: {
+    position: 'relative',
     minHeight: 300,
+  },
+  loading: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
   },
 });
 
@@ -14,7 +21,11 @@ const MediaView = ({src, style, type}) => {
   if (type === 'video') {
     return (
       <View style={localStyles.loadingView}>
-        {loading && <ActivityIndicator animating size="small" color="black" />}
+        {loading && (
+          <View style={localStyles.loading}>
+            <ActivityIndicator animating size="small" color="black" />
+          </View>
+        )}
         <Video
           volume={0.0}
           style={style}
