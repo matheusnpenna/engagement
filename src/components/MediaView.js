@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {View, ActivityIndicator, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Video from 'react-native-video';
-import styles from '../screens/Home/styles';
 const localStyles = StyleSheet.create({
   loadingView: {
     position: 'relative',
