@@ -58,5 +58,6 @@ export default StyleSheet.create({
   label: {
     fontSize: 18,
     textAlign: 'center',
+    marginBottom: 20,
   },
 });

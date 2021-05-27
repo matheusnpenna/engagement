@@ -13,4 +13,13 @@ export default StyleSheet.create({
     paddingTop: 20,
     marginBottom: 20,
   },
+  question: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#7d7d7d',
+    marginBottom: 20,
+  },
+  safeBottomArea: {
+    marginBottom: 100,
+  },
 });

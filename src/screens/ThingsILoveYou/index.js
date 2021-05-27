@@ -48,14 +48,15 @@ const ThingsILovePage = ({navigation}) => {
 
   const attemptUnlock = () => {
     if (!password.length) {
-      message.show('Digite a senha!', '', 'error');
+      message.show('Digite a senha! 😥', '', 'error');
       return;
     }
 
-    if (password.trim().toLowerCase() === 'doyoumarryme') {
+    if (password.trim().toLowerCase() === 'sim') {
+      message.show('Aeeeee, fico feliz que aceitou! 🙏😍', '', 'success');
       setShowContent(true);
     } else {
-      message.show('Senha Incorreta!', '', 'error');
+      message.show('Senha Incorreta 😜', '', 'error');
     }
   };
 
@@ -172,8 +173,13 @@ const ThingsILovePage = ({navigation}) => {
       return (
         <View style={styles.authWrapper}>
           <Text style={styles.label}>
-            Digite a senha descoberta no desafio para acessar e descobrir coisas
-            que eu amo em você
+            Se você conseguiu descobrir a chave para encontrar a senha deve ter
+            descoberto uma pergunta, você sabe o significado dela? Esta é minha
+            pergunta para você, se você sabe o significado, a senha para
+            desbloquear é a sua resposta para esta pergunta.
+          </Text>
+          <Text style={styles.label}>
+            Responda se estiver certeza da resposta!
           </Text>
           <TextInput
             secureTextEntry
@@ -182,7 +188,7 @@ const ThingsILovePage = ({navigation}) => {
             value={password}
           />
           <View style={styles.btnWrapper}>
-            <Button title={'ENTRAR'} onPress={attemptUnlock} />
+            <Button title={'DESBLOQUEAR'} onPress={attemptUnlock} />
           </View>
         </View>
       );

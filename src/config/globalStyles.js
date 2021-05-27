@@ -9,6 +9,7 @@ export default StyleSheet.create({
     width: '100%',
     backgroundColor: '#fff',
     padding: 20,
+    paddingBottom: 140,
   },
   pageTitle: {
     fontSize: 22,
