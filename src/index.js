@@ -8,6 +8,7 @@ import {
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import Feather from 'react-native-vector-icons/Feather';
+import firebase from '@react-native-firebase/app';
 import Toast from 'react-native-toast-message';
 import ApplicationContext from './context/';
 import {
@@ -61,6 +62,14 @@ const tabConfig = {
 
 function App() {
   const scheme = useColorScheme();
+  firebase.initializeApp({
+    apiKey: 'AIzaSyCHOG8HmTB4QKMKhAKTTXkDKyvxbZod-hk',
+    authDomain: 'my-engagement-ms.firebaseapp.com',
+    projectId: 'my-engagement-ms',
+    storageBucket: 'my-engagement-ms.appspot.com',
+    messagingSenderId: '440305172373',
+    appId: '1:440305172373:web:32b2fbb75bb4da6876c09c',
+  });
 
   const hide = () => Toast.hide();
   const show = (text1, text2, type, onPress = null) => {

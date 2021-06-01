@@ -3,6 +3,9 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <Firebase.h>
+@import UIKit;
+@import Firebase;
 
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
@@ -11,9 +14,6 @@
 #import <FlipperKitNetworkPlugin/FlipperKitNetworkPlugin.h>
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
-@import UIKit;
-@import Firebase;
-#import <Firebase.h>
 
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
@@ -55,9 +55,8 @@ static void InitializeFlipper(UIApplication *application) {
   UIViewController *vc = [sb instantiateInitialViewController];
   rootView.loadingView = vc.view;
   
-#ifdef FB_SONARKIT_ENABLED
   [FIRApp configure];
-#endif
+
   return YES;
 }
 
