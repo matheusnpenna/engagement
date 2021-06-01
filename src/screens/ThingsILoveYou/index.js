@@ -8,6 +8,7 @@ import {
   Dimensions,
   TextInput,
 } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import firestore from '@react-native-firebase/firestore';
 import messaging from '@react-native-firebase/messaging';
 
@@ -83,10 +84,19 @@ const ThingsILovePage = ({navigation}) => {
   };
 
   const onError = error => {
-    message.show('Atenção', error, 'error');
+    message.show(
+      'Atenção',
+      `Não foi possível carregar as publicações. ${error.message}`,
+      'error',
+    );
+    setLoading(false);
   };
   const onErrorVerses = error => {
-    message.show('Atenção', error, 'error');
+    message.show(
+      'Atenção',
+      `Não foi carregar os versiculos. ${error.message}`,
+      'error',
+    );
   };
 
   const _onRefresh = async () => {
@@ -216,10 +226,10 @@ const ThingsILovePage = ({navigation}) => {
   }, [showContent, password, verseList]);
 
   return (
-    <SafeAreaView
+    <KeyboardAwareScrollView
       style={{...globalStyles.container, ...globalStyles.centralize}}>
       {content}
-    </SafeAreaView>
+    </KeyboardAwareScrollView>
   );
 };
 
