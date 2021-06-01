@@ -1,5 +1,5 @@
-import React, {useState, useContext} from 'react';
-import {View, Text, Image} from 'react-native';
+import React, {useContext} from 'react';
+import {View, Text, Image, ScrollView} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 
 import {MediaView} from '../../components';
@@ -13,20 +13,22 @@ const ThingDetailsPage = ({route, navigation}) => {
   const context = useContext(ApplicationContext);
 
   return (
-    <View style={globalStyles.container}>
+    <ScrollView style={globalStyles.container}>
       <View style={globalStyles.row}>
         <Image source={IMAGES.profile} style={globalStyles.profileImg} />
         <Text style={[globalStyles.profileName, globalStyles.marginBottom1]}>
           _matheuspenna
         </Text>
       </View>
-      <View style={styles.divider} />
-      <MediaView
-        src={item.picture}
-        type={item.media_type}
-        style={styles.media}
-      />
-      <View style={styles.divider} />
+      <View style={styles.mediaArea}>
+        <View style={styles.dividerTop} />
+        <MediaView
+          src={item.picture}
+          type={item.media_type}
+          style={styles.media}
+        />
+        <View style={styles.dividerBottom} />
+      </View>
       <View style={[globalStyles.row, globalStyles.marginBottom1]}>
         <View style={[globalStyles.flex1, globalStyles.row]}>
           <Feather
@@ -46,11 +48,16 @@ const ThingDetailsPage = ({route, navigation}) => {
       <Text style={[globalStyles.profileName, globalStyles.marginBottom1]}>
         _matheuspenna <Text style={styles.legend}>{item.text}</Text>
       </Text>
-      <View style={globalStyles.centralize}>
+      <View style={[globalStyles.row, globalStyles.centralizeY]}>
         <Text style={styles.iLoveYou}>AMO VOCÊ</Text>
-        <Feather name={'heart'} size={40} color={'red'} />
+        <Feather
+          name={'heart'}
+          size={40}
+          color={'red'}
+          style={{paddingTop: 30}}
+        />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

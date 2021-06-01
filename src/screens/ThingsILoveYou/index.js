@@ -209,8 +209,6 @@ const ThingsILovePage = ({navigation}) => {
           onRefresh={_onRefresh}
           ListHeaderComponent={_renderHeader}
           removeClippedSubviews
-          onEndReachedThreshold={0}
-          onEndReached={updateOffset}
         />
       </ActionDispatcher>
     );

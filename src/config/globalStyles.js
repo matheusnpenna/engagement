@@ -29,6 +29,12 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  centralizeX: {
+    alignItems: 'center',
+  },
+  centralizeY: {
+    justifyContent: 'center',
+  },
   between: {
     justifyContent: 'space-between',
     alignItems: 'center',
