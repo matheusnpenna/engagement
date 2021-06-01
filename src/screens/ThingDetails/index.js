@@ -15,7 +15,7 @@ const ThingDetailsPage = ({route, navigation}) => {
   return (
     <View style={globalStyles.container}>
       <View style={globalStyles.row}>
-        <Image source={IMAGES.profile} style={styles.profileImg} />
+        <Image source={IMAGES.profile} style={globalStyles.profileImg} />
         <Text style={[globalStyles.profileName, globalStyles.marginBottom1]}>
           _matheuspenna
         </Text>

@@ -36,10 +36,4 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  profileImg: {
-    height: 40,
-    width: 40,
-    borderRadius: 50,
-    marginRight: 10,
-  },
 });

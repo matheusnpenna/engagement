@@ -36,7 +36,7 @@ const screens = {
       defaultColor: 'grey',
       focusedColor: 'red',
     },
-  }
+  },
 };
 
 export default screens;

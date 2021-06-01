@@ -14,7 +14,7 @@ export default StyleSheet.create({
   pageTitle: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#7d7d7d',
+    color: 'black',
   },
   profileName: {
     fontSize: 16,
@@ -23,7 +23,7 @@ export default StyleSheet.create({
   text: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#7d7d7d',
+    color: 'black',
   },
   centralize: {
     justifyContent: 'center',
@@ -55,5 +55,17 @@ export default StyleSheet.create({
   },
   padding1: {
     padding: 10,
+  },
+  profileImg: {
+    height: 40,
+    width: 40,
+    borderRadius: 50,
+    marginRight: 10,
+  },
+  profileImgLg: {
+    borderRadius: 60,
+    height: 120,
+    width: 120,
+    marginBottom: 20,
   },
 });

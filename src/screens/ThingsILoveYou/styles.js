@@ -39,7 +39,7 @@ export default StyleSheet.create({
     color: 'black',
   },
   input: {
-    height: 40,
+    height: 48,
     margin: 12,
     borderWidth: 1,
     width: 300,
@@ -57,7 +57,7 @@ export default StyleSheet.create({
   },
   label: {
     fontSize: 18,
-    textAlign: 'center',
+    textAlign: 'justify',
     marginBottom: 20,
   },
 });

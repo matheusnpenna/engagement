@@ -111,7 +111,11 @@ function App() {
   const MainStack = () => {
     return (
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={BottomTabs} />
+        <Stack.Screen
+          name="Engagement"
+          component={BottomTabs}
+          options={{headerShown: false}}
+        />
         {Object.entries(screens.free)
           .map(([_, v]) => v)
           .map(({key, name, component, title}) => (

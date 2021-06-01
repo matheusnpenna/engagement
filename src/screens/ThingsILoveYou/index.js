@@ -100,12 +100,7 @@ const ThingsILovePage = ({navigation}) => {
 
   const _loadMore = async () => {
     setLoading(true);
-    const response = await firestore()
-      .collection('feed')
-      .orderBy('text')
-      .startAt(offset)
-      .limit(PAGINATION_LIMIT)
-      .get();
+    const response = await firestore().collection('feed').get();
     onSuccess(response);
     setLoading(false);
   };
@@ -172,6 +167,9 @@ const ThingsILovePage = ({navigation}) => {
     if (!showContent) {
       return (
         <View style={styles.authWrapper}>
+          <View style={[globalStyles.centralize, globalStyles.marginRight1]}>
+            <Image source={IMAGES.profile} style={globalStyles.profileImgLg} />
+          </View>
           <Text style={styles.label}>
             Se você conseguiu descobrir a chave para encontrar a senha deve ter
             descoberto uma pergunta, você sabe o significado dela? Esta é minha
@@ -181,14 +179,16 @@ const ThingsILovePage = ({navigation}) => {
           <Text style={styles.label}>
             Responda se estiver certeza da resposta!
           </Text>
-          <TextInput
-            secureTextEntry
-            style={styles.input}
-            onChangeText={e => onChangePassword(e)}
-            value={password}
-          />
+          <View style={globalStyles.centralize}>
+            <TextInput
+              secureTextEntry
+              style={styles.input}
+              onChangeText={e => onChangePassword(e)}
+              value={password}
+            />
+          </View>
           <View style={styles.btnWrapper}>
-            <Button title={'DESBLOQUEAR'} onPress={attemptUnlock} />
+            <Button title={'ACESSAR'} onPress={attemptUnlock} />
           </View>
         </View>
       );

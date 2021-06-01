@@ -5,8 +5,11 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   button: {
+    height: 48,
     borderRadius: 4,
-    backgroundColor: 'blue',
+    borderWidth: 2,
+    borderColor: 'red',
+    backgroundColor: 'transparent',
     paddingHorizontal: 20,
     paddingVertical: 10,
     justifyContent: 'center',
@@ -14,7 +17,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontWeight: 'bold',
-    color: '#fff',
+    color: 'red',
     fontSize: 20,
   },
 });

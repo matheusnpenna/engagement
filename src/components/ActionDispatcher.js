@@ -15,10 +15,7 @@ const ActionDispatcher = ({
   const fetchData = async function (collectionName, success, reject) {
     try {
       setLoading(true);
-      const response = await firestore()
-        .collection(collectionName)
-        .limit(limit)
-        .get();
+      const response = await firestore().collection(collectionName).get();
       setLoading(false);
       success(response);
     } catch (error) {
